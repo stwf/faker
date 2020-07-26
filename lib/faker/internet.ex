@@ -123,6 +123,10 @@ defmodule Faker.Internet do
     "#{remove_special_characters(user_name())}@#{domain_name()}"
   end
 
+  def email(name) do
+    "#{remove_special_characters(name)}@#{domain_name()}"
+  end
+
   @doc """
   Returns a complete free email based on a free email service [gmail, yahoo, hotmail]
 
@@ -336,7 +340,8 @@ defmodule Faker.Internet do
   end
 
   defp remove_special_characters(string) do
-    special_characters_pattern = :binary.compile_pattern(["'", "\""])
+    special_characters_pattern = :binary.compile_pattern(["'", "\"", " "])
     String.replace(string, special_characters_pattern, "")
+    |> String.downcase()
   end
 end
