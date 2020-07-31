@@ -124,6 +124,7 @@ defmodule Faker.Internet do
   end
 
   def email(name) do
+    
     "#{remove_special_characters(name)}@#{domain_name()}"
   end
 

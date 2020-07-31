@@ -101,9 +101,24 @@ defmodule Faker.Yoga.En do
 
   @spec class_adj() :: String.t()
   sampler(:class_adj, [
+    "Hot Power",
     "Hot",
-    "Ashnatga",
+    "Slow",
+    "Soulful",
+    "Slow Flow",
+    "Ashtanga",
+    "Alignment",
     "Vinyasa",
+    "Power",
+    "Pure",
+    "Zen",
+    "Pure Zen",
+    "Yin",
+    "Figure 4",
+    "Ashtanga",
+    "Ashtanga",
+    "Prenatal",
+    "Handstand",
     "Vigorous",
     "Gentle",
     "Restorative",
@@ -113,16 +128,36 @@ defmodule Faker.Yoga.En do
   ])
 
   sampler(:class_type, [
+    "Iyengar",
+    "Yoga",
     "Flow",
+    "Nidra",
+    "Basics",
+    "Barre",
+    "Ashtanga",
     "Vinyasa",
+    "Breath",
     "Motion",
-    "Minfulness",
+    "Mindfulness",
+    "Ashtanga",
+    "Fundamentals",
     "Meditation",
     "",
     "Workshop",
   ])
 
   def studio, do: "#{adjective()} #{noun()}"
+  def random_class, do: "#{random_adjectives()} #{class_type()}"
   def class, do: "#{class_adj()} #{class_type()}"
+
+
+  defp random_adjectives,
+    do: get_random_adjectives("", Faker.random_between(0, 2))
+
+  defp get_random_adjectives(adj, 0), do: adj
+
+  defp get_random_adjectives(adj, cnt),
+    do: get_random_adjectives("#{adj} #{class_adj()}", cnt - 1)
+
 
 end
